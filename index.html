@@ -890,7 +890,8 @@
 
     <!-- CONFIGURATION & ENDPOINT INTEGRATION FOR SELF-HOSTED SERVER -->
     <script>
-        const BASE_API_URL = "https://amondaya.com/nuzula/api";
+        // const BASE_API_URL = "https://amondaya.com/nuzula/api";
+        const BASE_API_URL = "";
 
         let guestsArray = [];
         let wishesArray = [];
@@ -1022,8 +1023,8 @@
         }
 
         window.addEventListener("DOMContentLoaded", () => {
-            syncDataFromServer();
-            setInterval(syncDataFromServer, 5000);
+            // syncDataFromServer();
+            // setInterval(syncDataFromServer, 5000);
             
             // Initialize scroll reveal observer
             initScrollReveal();
@@ -1276,9 +1277,10 @@
         
         if (toGuestName) {
             document.getElementById('guestName').innerText = decodeURIComponent(toGuestName);
-            document.getElementById('formName').value = decodeURIComponent(toGuestName);
+            // document.getElementById('formName').value = decodeURIComponent(toGuestName);
         }
         if (locGuestName) {
+            console.log(decodeURIComponent(locGuestName));
             document.getElementById('guestLocation').innerText = "di " + decodeURIComponent(locGuestName);
         }
 
