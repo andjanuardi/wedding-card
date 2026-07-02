@@ -14,7 +14,7 @@
 </head>
 <body class="bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-md">
-        <div class="bg-white/5 backdrop-blur-md border border-champagne-400/20 rounded-3xl p-8 shadow-2xl">
+        <div class="bg-white/85 backdrop-blur-md border border-champagne-400/20 rounded-3xl p-8 shadow-2xl">
             <div class="text-center mb-8">
                 <div class="flex items-center justify-center gap-3 mb-4">
                     <div class="h-px w-12 bg-gradient-to-r from-transparent to-champane-400"></div>
@@ -22,7 +22,7 @@
                     <div class="h-px w-12 bg-gradient-to-l from-transparent to-champane-400"></div>
                 </div>
                 <h1 class="font-serif text-3xl text-champagne-200 mb-1">Buat Link Undangan</h1>
-                <p class="text-xs text-stone-400 tracking-wider">Generator tautan personal untuk tamu</p>
+                <p class="text-xs text-stone-700 tracking-wider">Generator tautan personal untuk tamu</p>
             </div>
 
             <div class="space-y-5">
@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-user mr-1"></i> Kepada
                     </label>
                     <input type="text" id="toName" placeholder="Contoh: Andri Januardi, S.Kom"
-                        class="w-full px-4 py-3 rounded-xl border border-champagne-400/20 bg-stone-800/50 text-champagne-100 placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:border-transparent text-sm transition">
+                        class="w-full px-4 py-3 rounded-xl border border-champagne-400/20  text-champagne-100 placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:border-transparent text-sm transition">
                 </div>
 
                 <div>
@@ -39,7 +39,7 @@
                         <i class="fa-solid fa-location-dot mr-1"></i> Di
                     </label>
                     <input type="text" id="diLoc" value="Sinabang"
-                        class="w-full px-4 py-3 rounded-xl border border-champagne-400/20 bg-stone-800/50 text-champagne-100 placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:border-transparent text-sm transition">
+                        class="w-full px-4 py-3 rounded-xl border border-champagne-400/20  text-champagne-100 placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-champagne-500 focus:border-transparent text-sm transition">
                 </div>
 
                 <button onclick="generateLink()"
@@ -48,8 +48,11 @@
                 </button>
             </div>
 
-            <div id="resultBox" class="mt-6 hidden">
-                <div class="bg-stone-800/80 border border-champagne-400/20 rounded-xl p-4">
+            <div id="resultBox" class="mt-2 hidden">
+                <button onclick="openLink()" class="w-full py-3.5 bg-gradient-to-r from-champagne-600 to-champagne-700 hover:from-champagne-700 hover:to-champagne-800 text-white rounded-xl font-semibold shadow-lg shadow-champagne-600/30 transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-share-nodes"></i> Buka Link
+                </button>
+                <div class="bg-stone-800/10 border border-champagne-400/20 rounded-xl p-4 mt-6">
                     <div class="flex items-start gap-3">
                         <i class="fa-solid fa-link text-champagne-400 mt-1"></i>
                         <div class="flex-1 min-w-0">
@@ -60,7 +63,7 @@
                 </div>
             </div>
 
-            <p class="text-[10px] text-stone-500 text-center mt-6 tracking-wider">
+            <p class="text-[10px] text-stone-700 text-center mt-6 tracking-wider">
                 Klik tombol untuk menyalin link ke clipboard
             </p>
         </div>
@@ -73,6 +76,17 @@
     </div>
 
     <script>
+
+        function openLink() {
+            const name = document.getElementById('toName').value.trim();
+            const location = document.getElementById('diLoc').value.trim() || 'Sinabang';
+
+            const baseUrl = window.location.origin + window.location.pathname.replace('share.html', '');
+            const link = baseUrl + 'index.html?to=' + encodeURIComponent(name) + '&di=' + encodeURIComponent(location);
+
+            window.location.href = link
+        }
+
         function generateLink() {
             const name = document.getElementById('toName').value.trim();
             const location = document.getElementById('diLoc').value.trim() || 'Sinabang';
